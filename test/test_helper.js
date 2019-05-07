@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+/////////////////WE ARE DOING CRUD
 // we tell to mongoose to connect to mdb through mocha we check it
 mongoose.connect('mongodb://127.0.0.1:27017/users_test', {
   useNewUrlParser: true
