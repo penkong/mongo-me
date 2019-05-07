@@ -1,0 +1,23 @@
+{
+  "name": "mongo-me",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/penkong/mongo-me.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/penkong/mongo-me/issues"
+  },
+  "homepage": "https://github.com/penkong/mongo-me#readme",
+  "dependencies": {
+    "mocha": "^6.1.4",
+    "mongoose": "^5.5.6"
+  }
+}
