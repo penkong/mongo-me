@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "nodemon --exec mocha -R min"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/penkong/mongo-me#readme",
   "dependencies": {
-    "mocha": "^6.1.4",
-    "mongoose": "^5.5.6"
+    "mocha": "^3.1.2",
+    "mongoose": "^5.5.6",
+    "nodemon": "^1.11.0"
   }
 }
