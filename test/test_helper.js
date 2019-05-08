@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 // for promise instead of bluebird and q
 mongoose.Promise = global.Promise;
-
+mongoose.set('useFindAndModify', false); //for use find one and update.
 /////////////////WE ARE DOING CRUD
 //executed only one time == to make sure 100% we are connected.
 //signal to mocha wait until i connect 
