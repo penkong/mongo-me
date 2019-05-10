@@ -9,7 +9,8 @@ describe('Updating records', () => {
   beforeEach((done) => { //to save or touch mongo use done to derived sth
     //to make sure we can make reference to joe from bot don't use var key
     joe = new User({
-      name: 'joe'
+      name: 'joe',
+      postCount: 0
     });
     joe.save() //when joe still not saved have prop in mongoose flag named isNew
       .then(() => done());
@@ -60,5 +61,23 @@ describe('Updating records', () => {
     assertName(User.findByIdAndUpdate(joe._id, {
       name: 'alex'
     }), done);
+  });
+  //class base update. old way cause all set to 1 but we want to add up 1
+  //  we use mongo operators to these $inc for example 
+  it('a user can have their post count incremented by 1', (done) => {
+    User.updateMany({
+        name: 'joe'
+      }, {
+        $inc: {
+          postCount: 1
+        }
+      })
+      .then(() => User.findOne({
+        name: 'joe'
+      }))
+      .then((user) => {
+        assert(user.postCount === 1);
+        done();
+      });
   });
 });

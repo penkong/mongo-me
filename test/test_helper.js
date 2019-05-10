@@ -8,7 +8,7 @@ mongoose.set('useFindAndModify', false); //for use find one and update.
 before(() => {
 
   // we tell to mongoose to connect to mdb through mocha we check it
-  mongoose.connect('mongodb://localhost/users_test', {
+  mongoose.connect('mongodb://127.0.0.1:27017/users_test', {
     useNewUrlParser: true
   });
   mongoose.connection //ip:port  / name of db

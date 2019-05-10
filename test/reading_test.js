@@ -14,7 +14,7 @@ describe('Reading users out of database', () => {
     joe.save() //when joe still not saved have prop in mongoose flag named isNew
       .then(() => done());
   });
-  // assert is it guy.
+  // assert is it guy. belong to it mean.
   it('find all users with a name of joe', (done) => {
     // find ret arr vs findOne ret record
     User.find({
