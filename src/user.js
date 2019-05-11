@@ -1,9 +1,12 @@
 //user model - all of data in single collection
 //collection of users create in db 
 const mongoose = require('mongoose');
+const PostSchema = require('./post');
 //property of mongoose
-const Schema = mongoose.Schema;
 //schema is small part of model
+const Schema = mongoose.Schema;
+
+
 const UserSchema = new Schema({
   name: {
     type: String,
@@ -15,7 +18,8 @@ const UserSchema = new Schema({
     //for input force
     required: [true, 'Name id required.']
   },
-  postCount: Number
+  postCount: Number,
+  posts: [PostSchema] //nested sub doc list of post in user
 });
 // now creating user model with user collection name - User entire collection
 const User = mongoose.model('user', UserSchema);
