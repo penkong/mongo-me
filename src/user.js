@@ -19,7 +19,11 @@ const UserSchema = new Schema({
     required: [true, 'Name id required.']
   },
   posts: [PostSchema], //nested sub doc list of post in user
-  likes : Number
+  likes : Number,
+  blogPosts : [{
+    type : Schema.Types.ObjectId,
+    ref : 'blogPost'
+  }]
 });
 // something related to sub schema but it's not related by nature
 //like post count field in user ==>usage of virtual to connect

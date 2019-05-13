@@ -20,8 +20,15 @@ before(() => {
 //************************************* */
 //run hook - is func run before anything executed to clean up db for check 
 //test work other wise test always pass
-beforeEach(done => {
-  mongoose.connection.collections.users.drop(() => {
-    done(); //signal to mocha to run next test.
+beforeEach((done) => {
+  //mongoose lower case name of collections
+  const {users , comments , blogposts} = mongoose.connection.collections;
+  // in mongoose cant drop many collection at same time
+  users.drop(() => {
+    comments.drop(()=>{
+      blogposts.drop(()=>{
+        done(); //signal to mocha to run next test.
+      });
+    });
   });
 });
