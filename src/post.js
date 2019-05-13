@@ -6,6 +6,6 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
   title: String
 });
-// createdAt for examole
+// createdAt for example
 
 module.exports = PostSchema;

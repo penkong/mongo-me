@@ -10,7 +10,7 @@ describe('Updating records', () => {
     //to make sure we can make reference to joe from bot don't use var key
     joe = new User({
       name: 'joe',
-      postCount: 0
+      likes: 0
     });
     joe.save() //when joe still not saved have prop in mongoose flag named isNew
       .then(() => done());
@@ -51,32 +51,19 @@ describe('Updating records', () => {
   });
 
   it('A model class can update one record', (done) => {
-    assertName(User.findOneAndUpdate({
-      name: 'joe'
-    }, {
-      name: 'alex'
-    }), done);
+    assertName(User.findOneAndUpdate({name: 'joe'}, {name: 'alex'}), done);
   });
   it('A model class can find a record with an Id an update', (done) => {
-    assertName(User.findByIdAndUpdate(joe._id, {
-      name: 'alex'
-    }), done);
+    assertName(User.findByIdAndUpdate( joe._id,{ name: 'alex'}), done);
   });
   //class base update. old way cause all set to 1 but we want to add up 1
   //  we use mongo operators to these $inc for example 
+  //xit means some test still in develop mocha not test that.
   it('a user can have their post count incremented by 1', (done) => {
-    User.updateMany({
-        name: 'joe'
-      }, {
-        $inc: {
-          postCount: 1
-        }
-      })
-      .then(() => User.findOne({
-        name: 'joe'
-      }))
+    User.updateMany( { name: 'joe' },  {$inc: { likes: 10 }})
+      .then(() => User.findOne({ name: 'joe'}))
       .then((user) => {
-        assert(user.postCount === 1);
+        assert(user.likes === 10);
         done();
       });
   });

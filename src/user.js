@@ -18,9 +18,21 @@ const UserSchema = new Schema({
     //for input force
     required: [true, 'Name id required.']
   },
-  postCount: Number,
-  posts: [PostSchema] //nested sub doc list of post in user
+  posts: [PostSchema], //nested sub doc list of post in user
+  likes : Number
 });
+// something related to sub schema but it's not related by nature
+//like post count field in user ==>usage of virtual to connect
+// any field in parent not consist in child -> do it by server
+//server count and return virtual type or field actually not save in db
+// field postCount : Number
+// get func like this cause quickly run in real its joe.postCount();
+// post count become func in reality node shell try
+UserSchema.virtual('postCount').get(function() {
+  return this.posts.length;
+});
+
+
 // now creating user model with user collection name - User entire collection
 const User = mongoose.model('user', UserSchema);
 
