@@ -36,6 +36,18 @@ UserSchema.virtual('postCount').get(function() {
   return this.posts.length;
 });
 
+//-----------------MIDDLEWARE---------------------
+// clean up by middleware
+//4 kind init , save , remove , validate
+//every middleware call with func next() let story continue
+UserSchema.pre('remove', function(next){
+  //pull out from mongoose model
+  const BlogPost = mongoose.model('blogPost');
+  //this === joe
+  // use mongo operator like $inc for query $in go in blogposts look at ids
+  BlogPost.remove({ _id : { $in : this.blogPosts}})
+    .then(()=>next());
+});
 
 // now creating user model with user collection name - User entire collection
 const User = mongoose.model('user', UserSchema);
